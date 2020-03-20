@@ -17,6 +17,7 @@
 #include "SharedFunction.h"
 #include "SharedArray.h"
 #include "SharedObject.h"
+#include "MapperRegistry.h"
 
 #include <unistd.h>
 

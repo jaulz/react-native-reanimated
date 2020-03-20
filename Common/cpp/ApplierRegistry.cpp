@@ -5,6 +5,10 @@
 #include<ApplierRegistry.h>
 #include "Logger.h"
 
+ApplierRegistry::ApplierRegistry(std::shared_ptr<MapperRegistry> mapperRegistry) {
+  this->mapperRegistry = mapperRegistry;
+}
+
 void ApplierRegistry::registerApplierForRender(int id, std::shared_ptr<Applier> applier) {
   renderAppliers[id] = applier;
 }
@@ -47,6 +51,8 @@ void ApplierRegistry::evaluateAppliers(
       toRemove.push_back(id);
     }
   }
+  
+  mapperRegistry->execute(rt, module);
   
   for (auto id : toRemove) {
     unregisterApplier(id);
